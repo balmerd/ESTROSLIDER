@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+    <head>
+      
+	<!-- Meta information -->
+	<meta charset="utf-8">
+	
+	<title>Ken Burns slider - Example 2 - A jQuery Plugin by pixelentity</title>
+	
+	<link rel="stylesheet" href="css/examples.css" />
+	
+	<!-- skin stylesheets -->
+	<link rel="stylesheet" href="js/pe.kenburns/themes/neutral_light/skin.min.css" />
+	
+	<!-- import jQuery -->
+	<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+	
+	<!-- import plugin -->
+	<script type="text/javascript" src="js/pe.kenburns/jquery.pixelentity.kenburnsSlider.min.js"></script>
+	
+	<!-- set slider size -->
+	<style>
+		.peKenBurns {
+			width: 920px;
+			height: 400px;
+		}
+	</style>
+	
+	<!-- activate plugin -->
+	<script>
+		jQuery(function($){
+		
+			// get public API from slider
+			var api = $(".peKenBurns").peKenburnsSlider({api:true})
+			
+			// listen for slide change event
+			api.bind("change.pixelentity",function (e,data) {
+				alert(data.slideIdx)
+			});
+			
+			// bind to button click
+			$("input").click(apiHandler)
+			
+			function apiHandler(e) {
+				switch (e.currentTarget.id) {
+					case "pause":
+						api.pause()
+					break;
+					case "resume":
+						api.resume()
+					break;
+					case "prev":
+						api.prev()
+					break;
+					case "next":
+						api.next()
+					break;
+					case "show":
+						api.show(1)
+					break;
+					case "length":
+						alert(api.length())
+					break;
+				}
+				return false;
+			}
+			
+		})
+	</script>
+    
+    </head>
+   
+    <body>
+    
+    	<div class="peKenBurns" data-mode="kb" data-logo="disabled">
+			<div class="peKb_active" data-delay="5" data-thumb="img/thumbs/kb_01.jpg">
+				<img src="img/kb_01.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 01</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_02.jpg">
+				<img src="img/blank.png" data-src="img/kb_02.jpg" alt="Banner Image 1" />
+				<h1>SLIGHTLY LONGER IMAGE CAPTION POSITION BOTTOM & CENTERED</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_03.jpg">
+				<img src="img/blank.png" data-src="img/kb_03.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 03</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_04.jpg">
+				<img src="img/blank.png" data-src="img/kb_04.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 04</h1>
+			</div>		    
+		</div>
+    
+    	<input type="button" id="pause" value="pause">
+		<input type="button" id="resume" value="resume">
+		<input type="button" id="prev" value="prev">
+		<input type="button" id="next" value="next">
+		<input type="button" id="show" value="show">
+		<input type="button" id="length" value="length">
+    
+    </body>
+	
+</html>

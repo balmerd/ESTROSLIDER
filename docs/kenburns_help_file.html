@@ -1,0 +1,801 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<meta charset="utf-8">
+	<title>Estro Ken Burns Slider - Help Documentation</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/custom-css/custom.css" type="text/css" media="screen">
+	
+	<script type="text/javascript" src="assets/hilight/scripts/shCore.js"></script>
+	<script type="text/javascript" src="assets/hilight/scripts/shBrushXml.js"></script>
+	<script type="text/javascript" src="assets/hilight/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="assets/hilight/scripts/shBrushCss.js"></script>
+	<script type="text/javascript" src="assets/jquery-1.5.2.min.js"></script>
+	
+	<!-- Include *at least* the core style and default theme -->
+	<link href="assets/hilight/styles/shCoreRDark.css" rel="stylesheet" type="text/css" />
+	<link href="assets/hilight/styles/shThemeRDark.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript">
+		SyntaxHighlighter.defaults["toolbar"] = false;
+		SyntaxHighlighter.all()
+		
+		jQuery(function($){
+			$("table tr td:first-child").addClass("parameter")
+			$("table tr:even").addClass("even")
+		})
+	</script>
+	
+	<style type="text/css" media="screen">
+		
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h1 class="center">&ldquo;Estro&rdquo;</h1>
+		
+		<h3 class="center alt">&ldquo;Estro jQuery plugin slider&rdquo; help documentation by &ldquo;pixelentity&rdquo; v1.0</h3>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 19/04/2011<br>
+					By: pixelentity<br>
+					Profile: <a href="http://themeforest.net/user/pixelentity">Themeforest</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing our component. If you have any questions that are beyond the scope of this help file, please feel free to email us via our Envato profile page contact form <a href="http://themeforest.net/user/pixelentity">here</a>. Thanks.</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<!--<hr>-->
+		
+		<h3 id="toc"><strong>Table of Contents</strong></h3>
+		<ol class="alpha">
+			<li><a href="#quicksetup">Quick Setup</a></li>
+			<li><a href="#basicMarkup">Basic Configuration - Markup</a></li>
+			<li><a href="#basicGlobal">Basic Configuration - Global parameters</a></li>
+			<li><a href="#basicSlide">Basic Configuration - Per slide paramaters</a></li>
+			<li><a href="#basicLazy">Basic Configuration - Lazy loading</a></li>
+			<li><a href="#basicVideo">Basic Configuration - Vimeo, Youtube, links</a></li>
+			<li><a href="#advThumb">Advanced Configuration - Thumbnail rollover mode</a></li>
+			<li><a href="#advFont">Advanced Configuration - External fonts</a></li>
+			<li><a href="#advAPI">Advanced Configuration - Public API</a></li>
+			<li><a href="#css">CSS Stylesheets - Organisation</a></li>
+			<li><a href="#skins">Basic Styling - Skins</a></li>
+			<li><a href="#frame">Basic Styling - Frame &amp; Captions</a></li>
+			<li><a href="#customSkin">Advanced Styling - Custom Skins</a></li>
+			<li><a href="#credits">Sources and Credits</a></li>
+			<li><a href="#changelog">Change Log</a></li>
+		</ol>
+		
+		<hr>
+		
+		<!-- New Section  -->
+		<h3 id="quicksetup">A. <strong>Quick Setup</strong> - <a href="#toc">top</a></h3>
+		<p>Copy or upload the js/pe.kenburns folder somewhere onto your server, for example
+into the top level "js" folder.
+To save space, you can remove the "src" sub folder which is only needed if you wish
+to modify the javascript source code.</p>
+<p>Include the following javascript and css code into HEAD section of the page</p>
+		<pre class="brush: xml">
+&lt;!-- skin stylesheet --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;js/pe.kenburns/themes/default/skin.min.css&quot; /&gt;
+
+&lt;!-- jQuery --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.5.2.min.js&quot;&gt;&lt;/script&gt;
+	
+&lt;!-- Ken burns slider plugin --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/pe.kenburns/jquery.pixelentity.kenburnsSlider.min.js&quot; /&gt;&lt;/script&gt;
+</pre>
+		<p>Create HTML markup for slides into BODY section of the HTML page.</p>
+		<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<body>
+	<!-- slider markup, 3 slides -->
+	<div class="peKenBurns">
+		<div class="peKb_active">
+			<img src="img/img01.jpg" />
+			<h1>CAPTION 01</h1>
+		</div>
+		
+		<div>
+			<img src="img/img02.jpg" />
+			<h1>CAPTION 02</h1>
+		</div>
+		
+		<div>
+			<img src="img/img03.jpg" />
+			<h1>CAPTION 03</h1>
+		</div>	
+	</div>
+	<!-- end slider markup -->
+</body>
+]]></script>
+		<p>Set the slider size by adding the following CSS into the HEAD section of the HTML page.</p>
+		<script type="syntaxhighlighter" class="brush: css; html-script: true"><![CDATA[
+<style>
+	.peKenBurns {
+		width: 920px;
+		height: 400px;
+	}		
+</style>
+]]></script>		
+		<p>Activate the plugin once the document is ready by placing the following into the HEAD section of the HTML page.</p>
+		<pre class="brush: js; html-script: true">
+&lt;script&gt;
+	jQuery(function($){
+		$(&quot;.peKenBurns&quot;).peKenburnsSlider()
+	})
+&lt;/script&gt;</pre>
+		
+			
+		<hr>
+
+		<!-- New Section  -->
+		
+		<h3 id="basicMarkup">B. <strong>Basic Configuration - Markup</strong> - <a href="#toc">top</a></h3>
+		<p>This component uses unobtrusive javascript to transform a block of html markup into
+a slider, all customization is done trough the use of HTML5 data attributes.
+
+The markup validates for HTML5 rules, while the content will also be fully indexed by search engines.
+
+The slider may be customised by altering the default values of several parameters, some of which
+are global while other can be changed on per slide basis.
+
+The general structure of markup follows this schema.</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<div class="peKenBurns">
+    <div class="peKb_active">
+        <img src="img/img01.jpg" />
+        <h1>CAPTION 01</h1>
+    </div>
+   
+    <div>
+        <img src="img/img02.jpg" />
+        <h1>CAPTION 02</h1>
+    </div>
+   
+    <div>
+        <img src="img/img03.jpg" />
+        <h1>CAPTION 03</h1>
+    </div>   
+</div>
+]]></script>
+		<p>The first parent div is the container which will be substitute by the slider once javascript code is run
+the class="peKenBurns" is needed because it will apply some CSS rules which will prevent your page layout from breaking
+if user has javascript turned off.
+
+The "peKb_active" class controls which slides would be visible if javascript is turned off.<br>
+<br>
+Caption can be defined using "h1", "h2", "h3", "h4" or "p" tag<br>
+<br>
+To size the slider, all that is needed is a CSS rule for the class "peKenBurns", as can be seen here below.</p>
+<script type="syntaxhighlighter" class="brush: css; html-script: true"><![CDATA[
+<style>
+    .peKenBurns {
+        width: 920px;
+        height: 400px;
+    }       
+</style>
+]]></script>
+		<p>This  CSS rule will set slider size to 920px in width and 400px in height.
+
+In general the main div is assigned the global parameters (we'll see them on upcoming sections) and contains the individual slides for the
+
+slider. Each slide is defined inside this main div as a separate div which contains an image and a caption (h1)
+
+Captions are not mandatory. As we'll see in a moment, even if captions are added into the HTML markup as seen above (h1 tags), there is a
+
+global parameter which allows you to turn them on or off for all slides. If captions are only required on some slider and not on others, this
+
+can be achieved by removing the HTML markup on those slides which do not require a caption.</p>
+
+		<!-- New Section  -->
+		<hr>
+		<h3 id="basicGlobal">C. <strong>Basic Configuration - Global parameters</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Global parameters are applied to the main div and allows the slider behaviour to be changed. Multiple sliders may be inserted into a single
+
+HTML page and so using these global parameters, each slider can be assigned different parameters to control how it works.
+
+These global parameters are defined using custom data-attributes which are valid HTML5 but ignored by your browser so they won't interfere
+with the HTML page rendering.
+
+Below is an example of the available global parameters and their accepted values. Remember all global parameters are set on the main parent
+
+div, the div with a class of "peKenBurns".</p>
+		
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<div class="peKenBurns"
+
+        data-mode="kb"
+        data-logo="enabled"
+        data-shadow="enabled"
+        data-thumb="enabled"
+        data-controls="hideOnFirst"
+        data-autopause="image"
+        data-captions="disabled"
+       
+        >
+]]></script>
+		<table>
+			<thead> 
+				<tr> 
+					<th>Parameter</th> 
+					<th>Accepted values</th> 
+				</tr> 
+			</thead>
+			<tbody> 
+				<tr>
+					<td>data-mode</td>
+					<td>set slider working mode, it can be a value from<br/>
+						"kb"    keen burns mode (default)<br/>
+						"swipe"    swipe mode<br/>
+					</td>
+				</tr>
+				<tr>
+					<td>data-logo</td>
+					<td>controls logo tab visibility<br/>
+                		"enabled"     display<br/>
+                		"disabled"    hidden (default)<br/>
+					</td>
+				</tr>
+				<tr>
+					<td>data-logo-link</td>
+					<td>controls the link attached to the logo tab. Insert full url into this attribute.<br/>
+					</td>
+				</tr>
+				<tr>
+					<td>data-logo-target</td>
+					<td>controls whether the logo link opens in a new tab/window or in the current tab/window.<br/>
+                		"_self"     opens in current tab/window (default)<br/>
+                		"_blank"    opens in new blank tab/window<br/>
+					</td>
+				</tr>
+				<tr>
+					<td>data-shadow</td>
+					<td>controls shadow visibility<br/>
+						"enabled"     display (default)<br/>
+                		"disabled"    hidden<br/>
+				</tr>
+				<tr>
+					<td>data-thumb</td>
+					<td>controls slider button rollover thumbnail preview (additional per slide parameter needed for each slide, see next section)<br/>
+					"enabled"     display image with ken burns effect (default)<br/>
+                "fixed"        display fixed image<br/>
+                "disabled"    hidden</td>
+				</tr>
+				<tr>
+					<td>data-controls</td>
+					<td>controls behaviour &amp; visibility of slider controls panel<br/>
+                "always"        always visible  (default)<br/>
+                "inner"        *NEW* inner controls<br/>
+                "disabled"        hidden<br/>
+                "over"            show only on mouse over<br/>
+                "hideOnFirst"        control panel shows at start, then auto hides after a few seconds, then works like "over" (above)</td>
+				</tr>
+				<tr>
+					<td>data-autopause</td>
+					<td>pause/resume timer when mouse is over slider<br/>
+                "image"                pause when mouse over image  (default)<br/>
+                "controls"            pause when mouse over controls<br/>
+                "image,controls"        pause when mouse over image or controls<br/>
+                "none"                never pause</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>If a global parameter does not feature inside the main div's tag, meaning it has not been added, then it is the same as setting the parameter
+
+to its default value. See above for each parameters default value. This allows for cleaner HTML markup if customisation of only 1 or 2
+
+parameters or elements are required.</p>
+		<hr>
+		<h3 id="basicSlide">D. <strong>Basic Configuration - Per slide paramaters</strong> - <a href="#toc">top</a></h3>
+		
+		<p>These parameters are added on to a slide's div tag. Shown below is an example of the available per slide parameters and their accepted values.</p>
+		
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<div
+        data-delay="5"
+        data-thumb="img/thumbs/thumb.png" 
+        /* ^^ required if global data-thumb parameter is set to "enabled" or "fixed" */
+        data-duration="15"
+        data-zoom="random"
+        data-align="random"
+        data-pan="random"
+        data-transition="fade"
+
+       
+        >
+               
+        <img src="img/kb_01.jpg" />
+        <h1>FUNKY IMAGE CAPTION TRANSITION 01</h1>
+</div>
+]]></script>
+		<table>
+			<thead> 
+				<tr> 
+					<th>Parameter</th> 
+					<th>Accepted values</th> 
+				</tr> 
+			</thead>
+			<tbody> 
+				<tr>
+					<td>data-delay</td>
+					<td>time (in seconds) before next slide is loaded</td>
+				</tr>
+				<tr>
+					<td>data-thumb</td>
+					<td>thumbnail img url for thumb preview</td>
+				</tr>
+				<tr>
+					<td class="section" colspan="2">KEN BURNS PARAMETERS (when data-mode="kb")</td>
+				</tr>
+				<tr>
+					<td>data-duration</td>
+					<td>keen burn effect duration in seconds, default value is 15s<br/>
+                    (the higher the value, the slower the movement will be)</td>
+				</tr>
+				<tr>
+					<td>data-zoom</td>
+					<td>zoom mode, can be "in", "out" or "random"</td>
+				</tr>
+				<tr>
+					<td>data-align</td>
+					<td>image alignment, in the form "vertical, horizontal" where<br/>
+                    vertical can be "top" "center" or "bottom"<br/>
+                    horizontal can be "left" "center" or "right"<br/>
+                   <br/>
+                    examples: "top,left" , "center,center" , "bottom,right"<br/>
+                   <br/>
+                    also data-align="random" is available</td>
+				</tr>
+				<tr>
+					<td>data-pan</td>
+					<td> controls image panning direction, in the form "vertical, horizontal" where<br/>
+                    vertical can be "top" "center" or "bottom"<br/>
+                    horizontal can be "left" "center" or "right"<br/>
+                   <br/>
+                    examples: "top,left" , "center,center" , "bottom,right"<br/>
+During the Ken Burns effect transition, the image will move from the position set at "data-align" to the position set at "data-pan".
+</td>
+				</tr>
+				<tr>
+					<td class="section" colspan="2">SWIPE PARAMETERS (when data-mode="swipe")</td>
+				</tr>
+				<tr>
+					<td>data-transition</td>
+					<td>transition type, can be "fade", "swipe" or "flyBy"</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr>
+		<h3 id="basicLazy">E. <strong>Basic Configuration - Lazy loading</strong> - <a href="#toc">top</a></h3>
+		
+		<p>If you have a lots of images, you can save user bandwidth and make page loads faster by using
+lazy loading for slides images.
+
+When working this way, each image will only be loaded when the relevant slide is about to be shown.
+
+Lazy loading is a per image setting. To enable it you will need to set the "src" attribute to "blank.png" image and set (found in download
+
+package - 1px x 1px blank png file) the real url of the image in the "data-src" attribute as shown here below.</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<img src="img/blank.png" data-src="img/kb_01.jpg" />
+]]></script>
+
+		<hr>
+		<h3 id="basicVideo">F. <strong>Basic Configuration - Vimeo, Youtube, links</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Each slide image can be linked to a youtube/vimeo video (which will playback in slider frame if browser supports flash)
+or external resource link like another HTML page. A video is inserted into a slide by wrapping the slide's image in an anchor "a" tag as
+
+follows:</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<a class="video hd autostart skiptonext loop" href="http://vimeo.com/7809605"><img src="img/kb_01.jpg" /></a>
+]]></script>
+		<p>The above example shows an inserted Vimeo video. Notice the video's url is placed into the "href" attribute, the "a" tag's class is set to
+
+"video" to make the slider aware that the link is a video. If a "video" class is not added to the "a" tag, the url will be opened like a normal
+
+link once the user clicks the image.
+
+Additional classes like "hd", "skiptonext", "autostart" and "loop" may be added as options
+to the "video" tag in order to control the video's behaviour.
+
+The new option "skiptonext", when set, cause the slider to autojump to next slide when video playback ends; since it uses Youtube / Vimeo latest APIs (which are still marked as experimental), it's not guaranteed to work in every browsers (it fails on ie7 for example).<br>
+
+To insert a Youtube video into a slide you can use the very same syntax as shown above. The only difference is the youtube video link is
+
+inserted into the "href" attribute instead of the vimeo link.
+
+
+In the case where flash is not available on the user's machine to play this inserted videos (Some mobile devices) then the user is redirected
+
+automatically to YouTube or Vimeo to their HTML5 version of the video Players. Alternatively on Apple's iOS running devices, if a native
+
+YouTube application is available on the device this will automatically open and launch a linked YouTube video.</p>
+
+		<hr>
+		<h3 id="advThumb">G. <strong>Advanced Configuration - Thumbnail rollover mode</strong> - <a href="#toc">top</a></h3>
+		
+		<p>This component includes an additional custom mode which is meant to work as image effect activated on mouse over. This mode can be seen in
+
+demonstration number 5 on the item's sales/preview page.
+
+This mode consists of each target image being turned into a separate ken burns mini slider which has a single image
+and a looping transition effect.
+ 
+For this effect you do not need to use the full markup code as shown in the other examples in this document. Instead all you need is to give
+
+each image a class name of "peKbGallery" (In this example its "peKbGallery" but it may be anything as long as the class name in the javascript
+
+code shown below is the same)</p>
+
+
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<img class="peKbGallery" data-delay="5" src="img/small/kb_01.jpg" alt="Banner Image 1" />
+<img class="peKbGallery" data-delay="5" src="img/small/kb_02.jpg" alt="Banner Image 2" />
+]]></script>
+
+		<p>Next the following code much be inserted into the HEAD section of the HTML page.</p>
+
+<pre class="brush: js; html-script: true">
+&lt;script&gt;
+    jQuery(function($){
+        $(&quot;.peKbGallery&quot;).peKenburnsSlider()
+    })
+&lt;/script&gt;
+</pre>
+		<p>In the HTML code shown above, the "alt" attribute is used to set optional caption text, the "data-delay" attribute defines the length of time
+
+before the Ken Burns transition loops, in such case that the user leaves the mouse pointer hovering over the image for an extended period of
+
+time.
+
+This custom mode may also be integrated with a lightbox plugin. Here we have used the PrettyPhoto plugin. Basically the image is wrapped in an
+
+anchor tag "a" and this tag's "href" attribute defines the path to the large image which will be shown in the lightbox once the user clicks the
+
+Ken Burns item.</p>
+
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<a rel="prettyPhoto" href="img/kb_01.jpg">
+	<img class="peKbGallery" data-delay="5" src="img/small/kb_01.jpg" alt="Banner Image 1" />
+</a>
+]]></script>	
+
+		<hr>
+			
+		<h3 id="advFont">H. <strong>Advanced Configuration - External fonts</strong> - <a href="#toc">top</a></h3>
+		
+		<p>This component has been designed to allow the use of external custom fonts, specifically Google web fonts. If you set the CSS style rules so
+
+that the captions use these external font,  then you will probably want the slider to be aware of this, because depending on the custom font
+
+used, the slider may need to recalculate the width of the caption text once the external fonts are loaded. (to correctly calculate the
+
+caption's background size and the caption position)
+
+This can be done when initializing the plugin as shown below:</p>
+<pre class="brush: js; html-script: true">
+&lt;script&gt;
+jQuery(function($){
+	$(&quot;.peKenBurns&quot;).peKenburnsSlider({externalFont:true})
+})
+&lt;/script&gt;
+</pre>
+		<p>Once externalFont is set to true (as above), the captions will not be displayed until the slider has been informed that all fonts have been
+
+loaded. This can be done easily by adding the following lines below the above plugin initializing code in the HEAD section of the HTML page.</p>
+<pre class="brush: js; html-script: true">
+&lt;script&gt;
+jQuery(window).load(function() {
+    $(&quot;.peKenBurns&quot;).each(function() {
+        $(this).data(&quot;peKenburnsSlider&quot;).fontsLoaded()
+    })
+})
+&lt;/script&gt;
+</pre>
+		<hr>
+		<h3 id="advAPI">I. <strong>Advanced Configuration - Public API</strong> - <a href="#toc">top</a></h3>
+		
+		<p>The slider offers a public API which you can use to control component inside the Slider from within your own scripts.
+
+To access this api, use the following code.</p>
+<script type="syntaxhighlighter" class="brush: js"><![CDATA[
+var api = $(".peKenBurns").peKenburnsSlider({api:true})
+]]></script>
+		<p>Once this is done you may use any of the following functions:</p>
+		<table>
+			<thead> 
+				<tr> 
+					<th>Method</th> 
+					<th>Description</th> 
+				</tr> 
+			</thead>
+			<tbody> 
+				<tr>
+					<td>api.pause()</td>
+					<td>pause the timer (and current ken burns if data-mode="kb")</td>
+				</tr>
+				<tr>
+					<td>api.resume()</td>
+					<td>resume the timer (and current ken burns if data-mode="kb")</td>
+				</tr>
+				<tr>
+					<td>api.pauseTimer()</td>
+					<td>pause the timer</td>
+				</tr>
+				<tr>
+					<td>api.resumeTimer()</td>
+					<td>resume the timer</td>
+				</tr>
+				<tr>
+					<td>api.prev()</td>
+					<td>jump to previous slide</td>
+				</tr>
+				<tr>
+					<td>api.next()</td>
+					<td>jump to next slide</td>
+				</tr>
+				<tr>
+					<td>api.show(n)</td>
+					<td>jump to n° slide where n = 1 .. number of slides</td>
+				</tr>
+				<tr>
+					<td>api.length()</td>
+					<td>returns number of slides</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- New Section  -->
+		<hr>
+		<h3 id="css">J. <strong>CSS Stylesheets - Organisation</strong> - <a href="#toc">top</a></h3>
+		<p>Because this component is a plugin and has been designed to use interchangable skins, the organisation of the css stylesheets is a little different than that of a normal website or template. This component uses one stylesheet to control it's layout, margins, padding, heirarchy and basically everything which is not to do with how the item looks on the surface. By this I mean, the colors, buttons, radius of rounded corners, border styles etc. These are all specified in a separate CSS stylesheet, because these are related to the component's skin. The benefits of this organisation is that the skin stylesheet can then be replaced with a new skin stylesheet and the whole look of the component can therefore be easily changed, without having to worry about upsetting the underlying CSS structure of the component. </p>
+		
+		<p>It is important that the folder structure of this component is maintained. All CSS information for the component is contained inside the "themes" folder. Inside the folder is the "common.css" file and then a subfolder for each skin. Each one of these subfolders contains a separate skin stylesheet and an "img" folder. This folder contains all the images which are specific to that skin.</p>
+		
+		<table>
+			<thead> 
+				<tr> 
+					<th>Stylesheet</th> 
+					<th>Description</th> 
+				</tr> 
+			</thead>
+			<tbody> 
+				<tr>
+					<td>themes/common.css</td>
+					<td>Controls all CSS layout structure, spacing, positioning for the component &amp; it's controls.</td>
+				</tr>
+				<tr>
+					<td>themes/default/style.css</td>
+					<td>Controls the external look of the "default" theme or skin. This includes the buttons, background images, colors, patterns. </td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- New Section  -->
+		<hr>
+		<h3 id="skins">K. <strong>Basic Styling - Skins</strong> - <a href="#toc">top</a></h3>
+		
+		
+		<p>This component included 4 skins which can be easily applied to change the look of the slider. These skins can be found in the "themes" folder which is located at: "js/pe.kenburns/". These 4 skins are mentioned here below.  you will find the 4 included skins of this component. These are "pixelentityAs a result of this method of CSS organisation, these separate stylesheets </p>
+		
+		<table>
+			<thead> 
+				<tr> 
+					<th>Skin Name</th> 
+					<th>Description</th> 
+				</tr> 
+			</thead>
+			<tbody> 
+				<tr>
+					<td>Pixelentity (default)</td>
+					<td>Seen in demo 1 on the CodeCanyon item preview, this skin consists of light controls with blue highlights.</td>
+				</tr>
+				<tr>
+					<td>Light (neutral light)</td>
+					<td>This skin consists of neutral momotones to suit almost any color scheme.</td>
+				</tr>
+				<tr>
+					<td>Dark (neutral)</td>
+					<td>This skin also consists of neutral momotones but is a lot darker than the above skin.</td>
+				</tr>
+				<tr>
+					<td>Organic (Custom)</td>
+					<td>This is an example which has been include to show the potential for creating custom skins for this component.</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+		<!-- New Section  -->
+		<hr>
+		<h3 id="frame">L. <strong>Basic Styling - Frame &amp; Captions</strong> - <a href="#toc">top</a></h3>
+		<p>Basic styling of elements like caption background, font used for titles or frame borders doesn't require you
+		to create a custom skin.
+		Those changes can be accomplished in a very simple way by adding a bunch of css rules: to change slider frame border, you'll just add
+		</p>
+		<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+/* set border size to 8px */
+.peKenBurns .peKb_slides {
+	padding: 8px;
+	/* customize rounded border (not supported in ie < 9) */
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+}
+]]></script>
+		<p>The border area can use a solid color or even a background image</p>
+<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+.peKenBurns .peKb_slides {
+	background-color:#E0DEDF;
+}
+]]></script>
+		<p>The inner frame is contained inside the border, it's like a default background for slider images 
+		(in fact, it has the same size)
+		</p>
+<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+.peKenBurns .peKb_slides .peKb_frame{
+	background-color:#000000;
+}
+]]></script>
+		<p>
+		The only thing you have to pay attention is to place these rules <strong>after</strong> component skin has been loaded, 
+		it can be another style sheet or even a &lt;style&gt; area placed at the end of the page HEAD section
+		Captions styles are customized in the very same way: to change titles font</p>
+		<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+.peKenBurns .peKb_slides .peKb_caption h1 {
+	font-family: Arial;
+	font-size: 11px;
+	color: #FEFEFE;
+}
+]]></script>
+		<p>Caption padding (which is space between title and caption background)</p>
+		<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+.peKenBurns .peKb_slides .peKb_caption .peKb_real{
+	padding: 10px;
+}		
+]]></script>
+		<p>Caption margin between caption background and slider border</p>
+		<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+.peKenBurns .peKb_slides .peKb_caption {
+	margin: 0px 5px 5px 5px;
+}		
+]]></script>
+		<p>Caption background color</p>
+		<script type="syntaxhighlighter" class="brush: css"><![CDATA[
+.peKenBurns .peKb_slides .peKb_caption .peKb_background {
+	background-color: #202020;
+}		
+]]></script>
+
+		<hr>
+		
+		<h3 id="customSkin">M. <strong>Advanced Styling - Custom Skins</strong> - <a href="#toc">top</a></h3>
+		
+		<p>This section will outline the various steps which need to be taken in order to create a custom skin for this component.</p>
+		<p>The first item which need to be modified is the stylesheet referencing within the head section of the HTML page. This component's total standard CSS information has been compressed once development was completed. The reason for this is to ensure speedy page loading when this plugin is being used. However if a custom skin is to be used, the stylesheets must be inserted separately and the compressed (minified) stylesheets removed. See the following code snipped for an example of the before and after views of the HTML page's HEAD section.</p>
+		
+		<p>BEFORE</p>
+		<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<!--stylesheets-->
+<link rel="stylesheet" href="css/yourGeneralStyles.css" />
+<link rel="stylesheet" href="js/pe.kenburns/themes/default/skin.min.css" />
+]]></script>
+		<p>AFTER</p>
+		<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<!--stylesheets-->
+<link rel="stylesheet" href="css/yourGeneralStyles.css" />
+<link rel="stylesheet" href="js/pe.kenburns/themes/common.css" />
+<link rel="stylesheet" href="js/pe.kenburns/themes/yourCustomTheme/style.css" />
+]]></script>
+		
+		<p>"yourCustomTheme" being the name of the folder containing your new skin's "style.css" file and the "img" folder for your new images. While "yourGeneralStyles.css" being the name of your main HTML page's stylesheet. When creating this new stylesheet, it is generally a good idea to copy a stylesheet from one of the other theme folders and paste it into your new skin's fonder. Then as you got through the CSS selectors you will be reminded of what images you need to change. Similarly, you can copy all the images from one of the other themes, paste them into your "img" folder in the new skin folder, and then going one by one, replace these images with your custom images. This is a good way create a checklist of what need to be done to creat a full new skin.</p>
+		<p>To help in the creatin of a custom skin this component includes all the necessary photoshop files to make the required skin images. These files can be found in the "skin_psds" folder in the download package. These files will open with Photoshop CS3 and later. In many of these files the items have been created on separate layers and using shapes with layerstyles, hence retaining their editability. In some cases, due to the lack of support for some CSS properties in Internet Explorer, a separate image will be require for use with Internet Explorer 7 & 8. In these cases you will see an additional image inside the skin's image folder with an "ie" or "internet_explorer" in its title.</p>
+		<p>When making new images for a custom skin, make sure to check the exact pixel dimension of the required image and make your replacement image the same size. The Photoshop files will not always be sized exactly to the image and instead the guides (which are included) will need to be used to select and crop out your required image portion. One particular image which requires special mention is the "timer_sprite_ie.png". This image is required for Internet Explorer 7 &amp; 8 for the animated circular timer to function. Basically all you will need to do with this image is to change the color of the circle segements. To do this just double click on a layers's "color Overlay" layer style and select a new color. Then simply hold "Alt" key on the keyboard and drag this layer style to all the other layers to change their color to match the first one. Finally save a replacement png image and thats it.</p>
+		<p>The above image is an example of a "sprite" which is an single image which contains different items or items of different states inside. This image is then loaded only once by the CSS and repositioned to reveal only the desired portion. You will notice that almost all of the control buttons for this component are also created using a sprite. Be careful when editing these sprites in Photoshop because if individual items inside the sprite are moved from their location, it will result in the icon or button, not being aligned correctly by the CSS. Almost all required editing of the images or buttons can be done using layer styles, without needing to touch the actual buttons itself.</p>
+	
+		<p>The included psd files are as follows:</p>
+		
+		<table>
+			<thead> 
+				<tr> 
+					<th>File Name</th> 
+					<th>Description</th> 
+				</tr> 
+			</thead>
+			<tbody> 
+				<tr>
+					<td>buttons_sprite_dark_skin.psd</td>
+					<td>Controls for the included dark skin</td>
+				</tr>
+				<tr>
+					<td>buttons_sprite_default_skin.psd</td>
+					<td>Controls for the included default skin</td>
+				</tr>
+				<tr>
+					<td>buttons_sprite_light_skin.psd</td>
+					<td>Controls for the included light skin</td>
+				</tr>
+				<tr>
+					<td>buttons_sprite_organic_skin.psd</td>
+					<td>Controls for the included organic skin</td>
+				</tr>
+				<tr>
+					<td>close_video_background_internet_explorer.psd</td>
+					<td>Background image for the close video button for all skins for Internet Explorer only</td>
+				</tr>
+				<tr>
+					<td>controls_and_video_close_background.psd</td>
+					<td>Background image tiles for the controls and video close buttons in modern browsers</td>
+				</tr>
+				<tr>
+					<td>logo_tag_background.psd</td>
+					<td>Background image for the logo tan on left hand side, for all skins and browsers</td>
+				</tr>
+				<tr>
+					<td>popup_thumb.psd</td>
+					<td>The background image for the thumbnail popup image when the slide buttons are rolled over. For all browsers</td>
+				</tr>
+				<tr>
+					<td>shadow_ends.psd</td>
+					<td>The left and right ends of the shadow image</td>
+				</tr>
+				<tr>
+					<td>shadow_middle_tile.psd</td>
+					<td>The middle section of the shadow is made up of this tile image.</td>
+				</tr>
+				<tr>
+					<td>timer_sprite_internet_explorer.psd</td>
+					<td>This is the timer segments image (referred to above) required for internet explorer only. The color of the timer in modern browsers is controlled via the skin stylesheet.</td>
+				</tr>
+			</tbody>
+		</table>
+	
+		<hr>
+		
+		<h3 id="credits">N. <strong>Sources and Credits</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Design and development of "Estro" Slider by <a href="http://activeden.net/user/iamdok">iamdok</a> &amp; <a href="http://activeden.net/user/bitfade">bitfade</a>.
+		
+		
+		<hr>
+		
+		<!-- New Section  -->
+		
+		<h3 id="changelog">O. <strong>Change Log</strong> - <a href="#toc">top</a></h3>
+		<p>There have been no updates to this item yet.</p>
+		
+		<hr>
+		
+		<!-- New Section  -->
+		<h3 id="outro"><strong>Thank You!</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Once again, thank you so much for purchasing this theme. If the above help documentation has not answered your questions, the following are your options:</p>
+		
+			<ol>
+				<li>Go to the component's sales page on CodeCanyon.net, more specifically the discussion page, and read through the questions left there by other buyers. In general buyers tend to have similar questions, and if this is the case, then your questions is likely to have already been answered there.</li>
+				<li>If an answer to your question cannot be found on the discussion tab, feel free to leave a comment of your own. Be sure to describe your problem in as much detail as possible and we will get back to you as soon as we can.</li>
+				<li>Generally it is best to use the discussion tab to ask questions because when these are answered other buyers can read the answers and this avoids senseless repetition on our behalf. However if your questions deals with a sensitive issue, such as a quotation for customisation work, or a link to a demo site which you would not like to be public, then you may contact us using the email address at the top of this help file.</li>
+			</ol>
+		
+		<p class="append-bottom alt large"><strong>regards, pixelentity</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

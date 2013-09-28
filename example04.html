@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+    <head>
+      
+	<!-- Meta information -->
+	<meta charset="utf-8">
+	
+	<title>Ken Burns slider - Example 4 - A jQuery Plugin by pixelentity</title>
+	
+	<link rel="stylesheet" href="css/examples.css" />
+	
+	<!-- skin stylesheets -->
+	<link rel="stylesheet" href="js/pe.kenburns/themes/default/skin.min.css" />
+	<link rel="stylesheet" href="css/prettyPhoto.css" />
+	
+	<!-- import jQuery -->
+	<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+	
+	<!-- import plugin -->
+	<script type="text/javascript" src="js/pe.kenburns/jquery.pixelentity.kenburnsSlider.min.js"></script>
+	
+	<!-- import prettyPhoto  -->
+	<script type="text/javascript" src="js/jquery.prettyPhoto.min.js"></script>
+	
+	<!-- set slider size and customize styles -->
+	<style>
+	
+		/* set some style for thumb containers */
+		img {
+			border: none;
+		}
+		
+		a {
+			text-decoration: none;
+		}
+	
+		.slider {
+			width: 300px;
+       		height: 240px;
+       		float: left;
+       		margin: 0px 0px 10px 10px;
+       		overflow: hidden;
+		}
+		
+		.clear {
+			clear: left;
+		}
+	
+		/* set plugin styles */
+		.peKenBurns {
+			width: 300px;
+       		height: 240px;
+		}
+		
+		/* make shadow less thumbnail smaller (shadow is 36px) */
+		.noShadow .peKenBurns {
+			height:204px;
+		}
+		
+		/* set border size to 8px */
+		.peKenBurns .peKb_slides {
+			padding: 8px;
+			/* customize rounder border (not supported in ie < 9) */
+			-moz-border-radius: 5px; 
+			-webkit-border-radius: 5px; 
+			border-radius: 5px;
+		}
+		
+		/* caption font */
+    	.peKenBurns .peKb_slides .peKb_caption h1 {
+    		font-family: Arial;
+    		font-size: 11px;
+    		color: #FEFEFE;
+    	}
+		
+		/* caption padding */
+		.peKenBurns .peKb_slides .peKb_caption .peKb_real{
+			padding: 10px;
+    	}
+    	
+    	/* caption margins */
+    	.peKenBurns .peKb_slides .peKb_caption {
+			margin: 0px 5px 5px 5px;
+		}	
+		
+		/* caption background */
+    	.peKenBurns .peKb_slides .peKb_caption .peKb_background {
+    		background-color: #202020;
+    	}
+		
+	</style>
+	
+	<!-- activate plugin -->
+	<script>
+		jQuery(function($){
+			$("a[rel^='prettyPhoto']").prettyPhoto()
+			$(".peKbGallery").peKenburnsSlider()
+		})
+	</script>
+    
+    </head>
+   
+    <body>
+    	
+    	<div class="slider noShadow">
+			<a rel="prettyPhoto" href="img/kb_01.jpg"><img class="peKbGallery" data-delay="5" src="img/small/kb_01.jpg" alt="Banner Image 1" /></a>
+		</div>
+				
+				
+		<div class="slider noShadow">
+			<a rel="prettyPhoto" href="img/kb_02.jpg"><img class="peKbGallery" data-delay="5" src="img/small/kb_02.jpg" alt="Banner Image 1" /></a>
+		</div>
+				
+				
+		<div class="slider noShadow">
+			<a rel="prettyPhoto" href="img/kb_03.jpg"><img class="peKbGallery" data-delay="5" src="img/small/kb_03.jpg" alt="Banner Image 1" /></a>
+		</div>
+		
+		
+		<div class="slider clear">
+			<a rel="prettyPhoto" href="img/kb_04.jpg"><img class="peKbGallery" data-delay="5" data-shadow="enabled" src="img/small/kb_04.jpg" alt="Banner Image 1" /></a>
+		</div>
+		
+		
+		<div class="slider">
+			<a rel="prettyPhoto" href="img/kb_01.jpg"><img class="peKbGallery" data-delay="5" data-shadow="enabled" src="img/small/kb_05.jpg" alt="Banner Image 1" /></a>
+		</div>
+		
+		
+		<div class="slider">
+			<a rel="prettyPhoto" href="img/kb_02.jpg"><img class="peKbGallery" data-delay="5" data-shadow="enabled" src="img/small/kb_06.jpg" alt="Banner Image 1" /></a>
+		</div>
+		
+    </body>
+	
+</html>

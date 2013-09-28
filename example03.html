@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+    <head>
+      
+	<!-- Meta information -->
+	<meta charset="utf-8">
+	
+	<title>Ken Burns slider - Example 3 - A jQuery Plugin by pixelentity</title>
+	
+	<link rel="stylesheet" href="css/examples.css" />
+	
+	<!-- skin stylesheets -->
+	<link rel="stylesheet" href="js/pe.kenburns/themes/neutral_light/skin.min.css" />
+	
+	<!-- import jQuery -->
+	<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+	
+	<!-- import plugin -->
+	<script type="text/javascript" src="js/pe.kenburns/jquery.pixelentity.kenburnsSlider.min.js"></script>
+	
+	<!-- set slider size and customize styles -->
+	<style>
+		.peKenBurns {
+			width: 460px;
+			height: 250px;
+		}
+		
+		/* set border size to 8px */
+		.peKenBurns .peKb_slides {
+			padding: 8px;
+			/* customize rounder border (not supported in ie < 9) */
+			-moz-border-radius: 5px; 
+			-webkit-border-radius: 5px; 
+			border-radius: 5px;
+		}
+		
+		/* outer border background */
+		.peKenBurns .peKb_slides {
+			background-color:#E0DEDF;
+		}
+     
+     	/* inner frame (insider border) background */
+		.peKenBurns .peKb_slides .peKb_frame{
+			background-color:#000;
+		}
+		
+		/* caption font */
+    	.peKenBurns .peKb_slides .peKb_caption h1 {
+    		font-family: Arial;
+    		font-size: 11px;
+    		color: #FEFEFE;
+    	}
+		
+		/* caption padding */
+		.peKenBurns .peKb_slides .peKb_caption .peKb_real{
+			padding: 10px;
+    	}
+    	
+    	/* caption margins */
+    	.peKenBurns .peKb_slides .peKb_caption {
+			margin: 0px 5px 5px 5px;
+		}	
+		
+		/* caption background */
+    	.peKenBurns .peKb_slides .peKb_caption .peKb_background {
+    		background-color: #202020;
+    	}
+		
+	</style>
+	
+	<!-- activate plugin -->
+	<script>
+		jQuery(function($){
+			$(".peKenBurns").peKenburnsSlider()
+		})
+	</script>
+    
+    </head>
+   
+    <body>
+    	
+    	<div class="peKenBurns" data-controls="over" data-mode="kb" data-logo="disabled" data-shadow="disabled">
+			<div class="peKb_active" data-delay="5" data-thumb="img/thumbs/kb_01.jpg">
+				<img src="img/kb_01.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 01</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_02.jpg">
+				<img src="img/blank.png" data-src="img/kb_02.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 02</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_03.jpg">
+				<img src="img/blank.png" data-src="img/kb_03.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 03</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_04.jpg">
+				<img src="img/blank.png" data-src="img/kb_04.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 04</h1>
+			</div>		    
+		</div>
+    
+    	<div class="peKenBurns" data-controls="over" data-mode="swipe" data-logo="disabled" data-shadow="disabled">
+			<div class="peKb_active" data-delay="5" data-thumb="img/thumbs/kb_01.jpg">
+				<img src="img/kb_01.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 01</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_02.jpg">
+				<img src="img/blank.png" data-src="img/kb_02.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 02</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_03.jpg">
+				<img src="img/blank.png" data-src="img/kb_03.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 03</h1>
+			</div>
+			
+			<div data-delay="5" data-thumb="img/thumbs/kb_04.jpg">
+				<img src="img/blank.png" data-src="img/kb_04.jpg" alt="Banner Image 1" />
+				<h1>FUNKY IMAGE CAPTION TRANSITION 04</h1>
+			</div>		    
+		</div>
+		
+    </body>
+	
+</html>
